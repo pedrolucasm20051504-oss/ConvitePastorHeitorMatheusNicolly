@@ -8,11 +8,11 @@
   --gold-dark:#7f6530;
   --line:rgba(169,138,72,.28);
   --shadow:0 22px 70px rgba(68,55,39,.13);
-
-  --cover-img:url("https://i.ibb.co/WWqNhNM7/Chat-GPT-Image-4-de-jul-de-2026-12-31-54.png");
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -39,143 +39,55 @@ body:before{
   background-size:20px 20px;
 }
 
-a{color:inherit}
+a{
+  color:inherit;
+}
 
-/* ABERTURA — CENTRALIZADA E ESTÁVEL */
+/* ABERTURA LIMPA E CENTRALIZADA */
 .open-page{
   min-height:100vh;
   min-height:100svh;
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
   padding:0;
   background:#f8f3eb;
   overflow:hidden;
 }
 
 .cover-stage{
-  width:min(100vw, 720px);
-  height:min(100svh, 1280px);
-  aspect-ratio:9 / 16;
   position:relative;
+  width:min(100vw, 720px);
+  height:100vh;
+  height:100svh;
+  max-height:1280px;
   overflow:hidden;
   background:#fffaf3;
   box-shadow:0 18px 60px rgba(70,56,37,.16);
-  margin:0 auto;
 }
 
-@supports (height: 100dvh){
-  .cover-stage{
-    height:min(100dvh, 1280px);
-  }
-}
-
-.cover-bg,
-.inside-preview{
+.cover-image{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,.88), transparent 28%),
-    linear-gradient(180deg,#fffdf8 0%, #f9f2e8 100%);
-}
-
-.cover-bg{
-  z-index:0;
-}
-
-.inside-preview{
-  z-index:1;
-}
-
-/* Cada lado recebe a imagem inteira dentro dele.
-   Isso mantém o centro perfeitamente alinhado. */
-.door{
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:50%;
-  overflow:hidden;
-  z-index:3;
-  transition:
-    transform 1.45s cubic-bezier(.67,.01,.18,1),
-    filter 1.45s ease,
-    opacity .9s ease;
-  will-change:transform;
-  transform-style:preserve-3d;
-  backface-visibility:hidden;
-}
-
-.door.left{
-  left:0;
-  transform-origin:left center;
-}
-
-.door.right{
-  right:0;
-  transform-origin:right center;
-}
-
-.door img{
-  position:absolute;
-  top:0;
-  width:200%;
+  width:100%;
   height:100%;
   object-fit:cover;
   object-position:center center;
   display:block;
-  max-width:none;
-  pointer-events:none;
-  user-select:none;
+  z-index:1;
+  transition:transform 1.15s ease, opacity 1.15s ease, filter 1.15s ease;
 }
 
-.door.left img{
-  left:0;
-}
-
-.door.right img{
-  right:0;
-}
-
-/* linha central da carta */
-.cover-stage:after{
-  content:"";
+.open-white{
   position:absolute;
-  top:0;
-  bottom:0;
-  left:50%;
-  width:18px;
-  transform:translateX(-50%);
-  z-index:5;
-  background:linear-gradient(90deg, transparent, rgba(79,66,44,.22), rgba(255,255,255,.28), rgba(79,66,44,.16), transparent);
-  filter:blur(.2px);
-  pointer-events:none;
-}
-
-.open-seal-button{
-  position:absolute;
-  left:50%;
-  top:51.7%;
-  transform:translate(-50%,-50%);
-  z-index:8;
-  width:clamp(138px, 27%, 190px);
-  height:clamp(138px, 27%, 190px);
-  border:0;
-  padding:0;
-  margin:0;
-  background:transparent;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  filter:drop-shadow(0 14px 22px rgba(83,65,32,.28));
-  animation:pulseSeal 2.2s ease-in-out infinite;
-}
-
-.open-seal-button img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  /* pequeno ajuste visual para compensar transparência do PNG */
-  transform:translateX(0);
+  inset:0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 30%),
+    linear-gradient(180deg,#fffdf8 0%, #f9f2e8 100%);
+  opacity:0;
+  z-index:2;
+  transition:opacity 1.15s ease;
 }
 
 .open-text{
@@ -183,65 +95,68 @@ a{color:inherit}
   left:50%;
   top:38.5%;
   transform:translateX(-50%);
-  z-index:8;
+  z-index:4;
+  width:100%;
+  text-align:center;
   color:#9a7e42;
   font-family:"Cinzel",serif;
   font-size:clamp(15px,3vw,22px);
   text-transform:uppercase;
   letter-spacing:1.6px;
-  text-align:center;
   text-shadow:0 2px 10px rgba(255,255,255,.75);
   pointer-events:none;
-  width:100%;
+  transition:opacity .5s ease;
 }
 
-.cover-stage.opening .door.left{
-  transform:perspective(1000px) rotateY(-72deg) translateX(-8%);
-  filter:brightness(1.08);
-  opacity:.94;
-}
-
-.cover-stage.opening .door.right{
-  transform:perspective(1000px) rotateY(72deg) translateX(8%);
-  filter:brightness(1.08);
-  opacity:.94;
-}
-
-.cover-stage.opening .open-seal-button,
-.cover-stage.opening .open-text{
-  opacity:0;
-  transition:opacity .45s ease;
-}
-
-.white-flash{
+.open-seal-button{
   position:absolute;
-  inset:0;
-  z-index:9;
-  background:#fffaf3;
-  opacity:0;
-  pointer-events:none;
+  left:50%;
+  top:51.7%;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  width:clamp(138px, 28vw, 190px);
+  height:clamp(138px, 28vw, 190px);
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:drop-shadow(0 14px 22px rgba(83,65,32,.28));
+  animation:pulseSeal 2.2s ease-in-out infinite;
+  transition:opacity .5s ease;
 }
 
-.cover-stage.opening .white-flash{
-  animation:flashOut 1.45s ease forwards .78s;
+.open-seal-button img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.cover-stage.opening .cover-image{
+  transform:scale(1.06);
+  opacity:0;
+  filter:blur(8px) brightness(1.08);
+}
+
+.cover-stage.opening .open-white{
+  opacity:1;
+}
+
+.cover-stage.opening .open-text,
+.cover-stage.opening .open-seal-button{
+  opacity:0;
 }
 
 @keyframes pulseSeal{
-  0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.035)}
-}
-
-@keyframes flashOut{
-  0%{opacity:0}
-  45%{opacity:.35}
-  100%{opacity:.78}
-}
-
-@media (max-width:780px){
-  .open-seal-button{
-    width:clamp(132px, 30%, 178px);
-    height:clamp(132px, 30%, 178px);
-    top:51.7%;
+  0%,100%{
+    transform:translate(-50%,-50%) scale(1);
+  }
+  50%{
+    transform:translate(-50%,-50%) scale(1.035);
   }
 }
 

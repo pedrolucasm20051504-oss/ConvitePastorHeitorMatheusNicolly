@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (openButton && coverStage) {
     openButton.addEventListener("click", () => {
       coverStage.classList.add("opening");
+
       setTimeout(() => {
         window.location.href = "convite.html";
-      }, 1850);
+      }, 1150);
     });
   }
 
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateCountdown = () => {
       const now = Date.now();
-      let diff = targetDate - now;
+      const diff = targetDate - now;
 
       if (diff <= 0) {
         countdownIds.days.textContent = "00";
