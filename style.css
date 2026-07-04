@@ -41,6 +41,7 @@ body:before{
 
 a{color:inherit}
 
+/* ABERTURA — IGUAL AO CONVITE PRINCIPAL */
 .open-page{
   min-height:100vh;
   display:grid;
@@ -51,9 +52,9 @@ a{color:inherit}
 }
 
 .cover-stage{
-  width:min(100vw, calc(100svh * 9 / 16), 720px);
-  aspect-ratio:9 / 16;
-  height:auto;
+  width:min(100vw, 720px);
+  height:100vh;
+  max-height:1280px;
   position:relative;
   overflow:hidden;
   background:#f8f3eb;
@@ -81,7 +82,8 @@ a{color:inherit}
   position:absolute;
   inset:0;
   background-image:var(--cover-img);
-  background-size:200% 100%;
+  background-size:cover;
+  background-position:center;
   background-repeat:no-repeat;
   width:50%;
   top:0;
@@ -97,14 +99,14 @@ a{color:inherit}
 
 .door.left{
   left:0;
-  right:auto;
+  background-size:200% 100%;
   background-position:left center;
   transform-origin:left center;
 }
 
 .door.right{
   right:0;
-  left:auto;
+  background-size:200% 100%;
   background-position:right center;
   transform-origin:right center;
 }
@@ -126,11 +128,11 @@ a{color:inherit}
 .open-seal-button{
   position:absolute;
   left:50%;
-  top:50.6%;
+  top:51.7%;
   transform:translate(-50%,-50%);
   z-index:8;
-  width:min(176px,30%);
-  height:min(176px,30%);
+  width:min(190px,31vw);
+  height:min(190px,31vw);
   border:0;
   padding:0;
   background:transparent;
@@ -149,7 +151,7 @@ a{color:inherit}
 .open-text{
   position:absolute;
   left:50%;
-  top:39.2%;
+  top:38.5%;
   transform:translateX(-50%);
   z-index:8;
   color:#9a7e42;
@@ -195,7 +197,7 @@ a{color:inherit}
 
 @keyframes pulseSeal{
   0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.03)}
+  50%{transform:translate(-50%,-50%) scale(1.035)}
 }
 
 @keyframes flashOut{
@@ -204,6 +206,7 @@ a{color:inherit}
   100%{opacity:.78}
 }
 
+/* PÁGINA DO CONVITE */
 .page{
   min-height:100vh;
   padding:24px 14px 46px;
@@ -330,16 +333,6 @@ a{color:inherit}
   color:var(--gold);
   font-size:clamp(48px,7.5vw,78px);
   line-height:1.08;
-}
-
-.upper-gold{
-  text-align:center;
-  font-family:"Cinzel", "Cormorant Garamond", serif;
-  font-weight:400;
-  text-transform:uppercase;
-  letter-spacing:2.6px;
-  font-size:clamp(15px,2.2vw,19px);
-  color:var(--gold-dark);
 }
 
 .divider{
@@ -561,8 +554,8 @@ a{color:inherit}
   }
 
   .open-seal-button{
-    width:min(170px,30%);
-    height:min(170px,30%);
-    top:50.6%;
+    width:178px;
+    height:178px;
+    top:51.4%;
   }
 }
