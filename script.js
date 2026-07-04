@@ -4,11 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const coverStage = document.getElementById("coverStage");
 
   if (openButton && coverStage) {
-    openButton.addEventListener("click", () => {
+    openButton.addEventListener("click", (event) => {
+      event.preventDefault();
       coverStage.classList.add("opening");
 
       setTimeout(() => {
-        window.location.href = "convite.html";
+        window.location.href = openButton.getAttribute("href") || "convite.html";
       }, 1150);
     });
   }

@@ -122,6 +122,7 @@ a{
   background:transparent;
   cursor:pointer;
   display:flex;
+  text-decoration:none;
   align-items:center;
   justify-content:center;
   filter:drop-shadow(0 14px 22px rgba(83,65,32,.28));
@@ -506,4 +507,22 @@ a{
     width:230px;
     opacity:.72;
   }
+}
+
+
+/* Correção final: selo/link sempre clicável e centralizado */
+.open-seal-button{
+  left:50% !important;
+  top:51.7% !important;
+  transform:translate(-50%,-50%) !important;
+}
+
+.open-seal-button img{
+  display:block;
+  margin:0 auto;
+}
+
+@keyframes pulseSeal{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.035)}
 }
