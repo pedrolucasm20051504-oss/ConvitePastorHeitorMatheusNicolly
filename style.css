@@ -51,9 +51,9 @@ a{color:inherit}
 }
 
 .cover-stage{
-  width:min(100vw, 720px);
-  height:100vh;
-  max-height:1280px;
+  width:min(100vw, calc(100svh * 9 / 16), 720px);
+  aspect-ratio:9 / 16;
+  height:auto;
   position:relative;
   overflow:hidden;
   background:#f8f3eb;
@@ -81,8 +81,7 @@ a{color:inherit}
   position:absolute;
   inset:0;
   background-image:var(--cover-img);
-  background-size:cover;
-  background-position:center;
+  background-size:200% 100%;
   background-repeat:no-repeat;
   width:50%;
   top:0;
@@ -98,14 +97,14 @@ a{color:inherit}
 
 .door.left{
   left:0;
-  background-size:200% 100%;
+  right:auto;
   background-position:left center;
   transform-origin:left center;
 }
 
 .door.right{
   right:0;
-  background-size:200% 100%;
+  left:auto;
   background-position:right center;
   transform-origin:right center;
 }
@@ -127,11 +126,11 @@ a{color:inherit}
 .open-seal-button{
   position:absolute;
   left:50%;
-  top:51.7%;
+  top:50.6%;
   transform:translate(-50%,-50%);
   z-index:8;
-  width:min(190px,31vw);
-  height:min(190px,31vw);
+  width:min(176px,30%);
+  height:min(176px,30%);
   border:0;
   padding:0;
   background:transparent;
@@ -150,7 +149,7 @@ a{color:inherit}
 .open-text{
   position:absolute;
   left:50%;
-  top:38.5%;
+  top:39.2%;
   transform:translateX(-50%);
   z-index:8;
   color:#9a7e42;
@@ -196,7 +195,7 @@ a{color:inherit}
 
 @keyframes pulseSeal{
   0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.035)}
+  50%{transform:translate(-50%,-50%) scale(1.03)}
 }
 
 @keyframes flashOut{
@@ -562,8 +561,8 @@ a{color:inherit}
   }
 
   .open-seal-button{
-    width:178px;
-    height:178px;
-    top:51.4%;
+    width:min(170px,30%);
+    height:min(170px,30%);
+    top:50.6%;
   }
 }
